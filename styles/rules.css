@@ -68,8 +68,8 @@ body {
 .rule-card {
   perspective: 1000px;
   cursor: pointer;
-  height: 220px;
-  transition: transform 0.2s ease;
+  height: 230px;
+  transition: transform 0.25s ease;
 }
 
 .rule-card:hover {
@@ -108,15 +108,19 @@ body {
 /* FRONT SIDE */
 .card-front {
   background: rgba(0,0,0,0.55);
-  font-size: 20px;
   text-align: center;
-  letter-spacing: 0.5px;
 }
 
 .card-front h2 {
-  margin: 0;
+  margin: 10px 0 0;
   font-size: 22px;
   text-shadow: 0 0 10px #ff2bd8;
+}
+
+.card-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 12px #ff2bd8;
 }
 
 /* BACK SIDE */
@@ -136,15 +140,15 @@ body {
 .card-back li {
   margin-bottom: 8px;
   font-size: 15px;
-  padding-left: 5px;
+  padding-left: 6px;
   border-left: 2px solid #a020f0;
 }
 
-/* FULL RULES CARD (SPECIAL) */
+/* FULL RULES CARD */
 .full-rules-card {
   background: linear-gradient(135deg, #a020f0, #ff2bd8);
   color: white;
-  font-size: 22px;
+  font-size: 24px;
   text-align: center;
   border-radius: 14px;
   box-shadow: 0 0 25px #ff2bd8;

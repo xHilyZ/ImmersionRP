@@ -1,9 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Immersion RP — Rules</title>
+  <link rel="stylesheet" href="styles/rules.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-links">
+    <a href="index.html">Home</a>
+    <a href="home.html">Play Now</a>
+    <a href="spin.html">Daily Spin</a>
+    <a href="rules.html">Rules</a>
+    <a href="support.html">Support</a>
+  </div>
+</div>
+
+<h1 class="page-title">Server Rules</h1>
+<p class="subtitle">Tap a card to flip and view the rules</p>
+
 <div class="rules-grid">
 
   <!-- CARD 1 -->
   <div class="rule-card" onclick="this.classList.toggle('flip')">
     <div class="card-inner">
-      <div class="card-front"><h2>General Conduct</h2></div>
+      <div class="card-front">
+        <div class="card-icon">🤝</div>
+        <h2>General Conduct</h2>
+      </div>
       <div class="card-back">
         <ul>
           <li>Respect all players</li>
@@ -18,7 +45,10 @@
   <!-- CARD 2 -->
   <div class="rule-card" onclick="this.classList.toggle('flip')">
     <div class="card-inner">
-      <div class="card-front"><h2>Roleplay Standards</h2></div>
+      <div class="card-front">
+        <div class="card-icon">🎭</div>
+        <h2>Roleplay Standards</h2>
+      </div>
       <div class="card-back">
         <ul>
           <li>No fail RP</li>
@@ -33,7 +63,10 @@
   <!-- CARD 3 -->
   <div class="rule-card" onclick="this.classList.toggle('flip')">
     <div class="card-inner">
-      <div class="card-front"><h2>Crime Rules</h2></div>
+      <div class="card-front">
+        <div class="card-icon">🔫</div>
+        <h2>Crime Rules</h2>
+      </div>
       <div class="card-back">
         <ul>
           <li>No random robbing</li>
@@ -48,7 +81,10 @@
   <!-- CARD 4 -->
   <div class="rule-card" onclick="this.classList.toggle('flip')">
     <div class="card-inner">
-      <div class="card-front"><h2>Police Interaction</h2></div>
+      <div class="card-front">
+        <div class="card-icon">🚓</div>
+        <h2>Police Interaction</h2>
+      </div>
       <div class="card-back">
         <ul>
           <li>Respect police RP</li>
@@ -63,7 +99,10 @@
   <!-- CARD 5 -->
   <div class="rule-card" onclick="this.classList.toggle('flip')">
     <div class="card-inner">
-      <div class="card-front"><h2>Vehicle Rules</h2></div>
+      <div class="card-front">
+        <div class="card-icon">🚗</div>
+        <h2>Vehicle Rules</h2>
+      </div>
       <div class="card-back">
         <ul>
           <li>Drive realistically</li>
@@ -75,9 +114,13 @@
     </div>
   </div>
 
-  <!-- CARD 6 — FULL RULES REDIRECT -->
+  <!-- FULL RULES CARD -->
   <div class="full-rules-card" onclick="window.location.href='https://immersion-roleplay.gitbook.io/immersion-rp'">
-    <strong>📘 View Full Rules</strong>
+    📘 View Full Rules
   </div>
 
 </div>
+
+<script src="scripts/rules.js"></script>
+</body>
+</html>
