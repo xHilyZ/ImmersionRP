@@ -20,7 +20,7 @@ const sliceCount = rewards.length;
 const sliceAngle = (2 * Math.PI) / sliceCount;
 let currentRotation = 0;
 
-// Draw wheel with centered labels + new font
+// Draw wheel with centered labels
 function drawWheel() {
   for (let i = 0; i < sliceCount; i++) {
     const start = i * sliceAngle;
@@ -37,15 +37,15 @@ function drawWheel() {
     ctx.rotate(start + sliceAngle / 2);
     ctx.textAlign = "center";
     ctx.fillStyle = "white";
-    ctx.font = "bold 20px 'Outfit', sans-serif"; // NEW FONT
-    ctx.fillText(rewards[i], 120, 5);
+    ctx.font = "bold 18px Outfit";
+    ctx.fillText(rewards[i], 110, 5);
     ctx.restore();
   }
 }
 
 drawWheel();
 
-// Spin logic (daily lock removed)
+// Spin logic
 spinBtn.onclick = () => {
   const randomSpin = Math.floor(2000 + Math.random() * 3000);
   currentRotation += randomSpin;

@@ -22,6 +22,14 @@ body {
   margin-bottom: 40px;
 }
 
+/* LAYOUT: WHEEL + REWARD LIST */
+.wheel-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;
+}
+
 /* WHEEL CONTAINER */
 .wheel-container {
   position: relative;
@@ -60,6 +68,39 @@ body {
 .spin-btn:hover {
   transform: scale(1.05);
   box-shadow: 0 0 30px #ff2bd8;
+}
+
+/* REWARD LIST */
+.reward-list {
+  background: rgba(0,0,0,0.55);
+  padding: 20px 25px;
+  border-radius: 12px;
+  border: 1px solid #a020f0;
+  width: 260px;
+  box-shadow: 0 0 15px #a020f0;
+}
+
+.reward-list h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 22px;
+  text-shadow: 0 0 10px #ff2bd8;
+}
+
+.reward-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reward-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 16px;
+}
+
+.reward-list li:last-child {
+  border-bottom: none;
 }
 
 /* POPUP */
