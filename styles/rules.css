@@ -65,7 +65,7 @@ body {
   justify-items: center;
 }
 
-/* FLASH CARDS */
+/* FLASH CARDS (ALL SIX IDENTICAL) */
 .rule-card {
   perspective: 1000px;
   cursor: pointer;
@@ -146,33 +146,29 @@ body {
   border-left: 2px solid #a020f0;
 }
 
-/* FULL RULES CARD */
-.full-rules-card {
-  height: 230px;
-  width: 100%;
-  background: linear-gradient(135deg, #a020f0, #ff2bd8);
-  color: white;
-  font-size: 26px;
-  font-weight: 600;
-  text-align: center;
-  border-radius: 14px;
-  box-shadow: 0 0 25px #ff2bd8;
+/* FULL RULES CARD — NOW IDENTICAL TO OTHERS */
+.full-rules-back {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  gap: 15px;
+}
+
+.full-rules-back button {
+  background: #a020f0;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
   cursor: pointer;
-  transition: 0.25s;
-  padding: 20px;
+  box-shadow: 0 0 12px #a020f0;
+  transition: 0.2s;
 }
 
-.full-rules-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 0 35px #ff2bd8;
-}
-
-.full-rules-card strong {
-  font-size: 28px;
+.full-rules-back button:hover {
+  background: #ff2bd8;
+  box-shadow: 0 0 18px #ff2bd8;
 }
 
 /* RESPONSIVE */
