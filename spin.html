@@ -63,14 +63,8 @@
 
 </div>
 
-<!-- FORCE SCRIPT TO LOAD AFTER DOM -->
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const script = document.createElement("script");
-    script.src = "/pages/spin.js?v=" + Date.now();
-    document.body.appendChild(script);
-  });
-</script>
+<!-- LOAD JS PROPERLY (NO DYNAMIC LOADER) -->
+<script src="/pages/spin.js"></script>
 
 </body>
 </html>
