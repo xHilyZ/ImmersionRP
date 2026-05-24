@@ -54,21 +54,26 @@ body {
   margin-bottom: 40px;
 }
 
-/* 3×2 GRID LAYOUT */
+/* 3×2 GRID */
 .rules-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* EXACTLY 3 per row */
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
   padding: 0 40px 60px;
   max-width: 1200px;
-  margin: 0 auto; /* center the grid */
+  margin: 0 auto;
 }
 
 /* FLASH CARDS */
 .rule-card {
   perspective: 1000px;
   cursor: pointer;
-  height: 200px; /* compact height */
+  height: 220px;
+  transition: transform 0.2s ease;
+}
+
+.rule-card:hover {
+  transform: translateY(-6px);
 }
 
 .card-inner {
@@ -83,55 +88,87 @@ body {
   transform: rotateY(180deg);
 }
 
+/* CARD SIDES */
 .card-front,
 .card-back {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 12px;
+  border-radius: 14px;
   border: 1px solid #a020f0;
-  box-shadow: 0 0 15px #a020f0;
+  box-shadow: 0 0 18px #a020f0;
   backface-visibility: hidden;
+  padding: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 15px;
 }
 
 /* FRONT SIDE */
 .card-front {
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.55);
   font-size: 20px;
   text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.card-front h2 {
+  margin: 0;
+  font-size: 22px;
+  text-shadow: 0 0 10px #ff2bd8;
 }
 
 /* BACK SIDE */
 .card-back {
   background: rgba(20,20,30,0.95);
   transform: rotateY(180deg);
+  overflow-y: auto;
 }
 
 .card-back ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  text-align: left;
+  width: 100%;
 }
 
 .card-back li {
-  margin-bottom: 6px;
-  font-size: 14px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  padding-left: 5px;
+  border-left: 2px solid #a020f0;
 }
 
-/* RESPONSIVE BREAKPOINTS */
+/* FULL RULES CARD (SPECIAL) */
+.full-rules-card {
+  background: linear-gradient(135deg, #a020f0, #ff2bd8);
+  color: white;
+  font-size: 22px;
+  text-align: center;
+  border-radius: 14px;
+  box-shadow: 0 0 25px #ff2bd8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.full-rules-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px #ff2bd8;
+}
+
+/* RESPONSIVE */
 @media (max-width: 900px) {
   .rules-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
   .rules-grid {
-    grid-template-columns: repeat(1, 1fr); /* 1 per row on phones */
+    grid-template-columns: repeat(1, 1fr);
   }
 }
