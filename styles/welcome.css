@@ -8,7 +8,7 @@ body {
 
 .hero {
   height: 100vh;
-  background: url('/assets/immersion-bg.jpg') center/cover no-repeat;
+  background: url('/assets/gta-palm-bg.jpg') center/cover no-repeat;
   position: relative;
 }
 
@@ -19,7 +19,7 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(1.5px);
 }
 
 .logo {
