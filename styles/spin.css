@@ -41,7 +41,7 @@ body {
 }
 
 .spin-wrapper {
-  margin-top: 140px; /* pushes content below header */
+  margin-top: 140px;
   text-align: center;
 }
 
@@ -73,7 +73,7 @@ body {
 
 .case-window {
   position: relative;
-  width: 520px; /* MUST match JS WINDOW_WIDTH */
+  width: 520px;
   height: 120px;
   overflow: hidden;
   border-radius: 12px;
@@ -89,7 +89,7 @@ body {
 }
 
 .case-item {
-  min-width: 130px; /* MUST match JS ITEM_WIDTH */
+  min-width: 130px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -101,21 +101,10 @@ body {
 }
 
 /* RARITY COLORS */
-.case-item.common {
-  background: rgba(255,255,255,0.03);
-}
-
-.case-item.rare {
-  background: rgba(88, 101, 242, 0.18);
-}
-
-.case-item.epic {
-  background: rgba(255, 43, 216, 0.18);
-}
-
-.case-item.legendary {
-  background: rgba(255, 215, 0, 0.18);
-}
+.case-item.common { background: rgba(255,255,255,0.03); }
+.case-item.rare { background: rgba(88, 101, 242, 0.18); }
+.case-item.epic { background: rgba(255, 43, 216, 0.18); }
+.case-item.legendary { background: rgba(255, 215, 0, 0.18); }
 
 /* CENTER MARKER */
 .case-marker {
@@ -194,9 +183,7 @@ body {
   align-items: center;
 }
 
-.hidden {
-  display: none;
-}
+.hidden { display: none; }
 
 .popup-content {
   background: rgba(20, 20, 30, 0.95);

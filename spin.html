@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Immersion Roleplay — Case Spin</title>
+  <meta charset="UTF-8">
+  <title>Immersion Roleplay — Daily Spin</title>
   <link rel="stylesheet" href="/styles/spin.css">
 </head>
 
 <body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-links">
+    <a href="/index.html">Home</a>
+    <a href="/home.html">Play Now</a>
+    <a href="/rules.html">Rules</a>
+    <a href="/support.html">Support</a>
+    <a href="/staff.html">Staff Login</a>
+  </div>
+</div>
 
 <div class="spin-wrapper">
 
@@ -14,6 +26,7 @@
 
   <div class="case-layout">
 
+    <!-- SPINNER -->
     <div class="case-container">
       <div class="case-window">
         <div class="case-items" id="caseItems"></div>
@@ -22,6 +35,7 @@
       <button id="spinBtn" class="spin-btn">SPIN</button>
     </div>
 
+    <!-- REWARD LIST -->
     <div class="reward-list">
       <h3>Possible Rewards</h3>
       <ul>
@@ -38,6 +52,7 @@
 
   </div>
 
+  <!-- POPUP -->
   <div id="resultPopup" class="popup hidden">
     <div class="popup-content">
       <h2>You Won!</h2>
@@ -48,7 +63,14 @@
 
 </div>
 
-<script src="/scripts/spin.js"></script>
+<!-- FORCE SCRIPT TO LOAD AFTER DOM -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const script = document.createElement("script");
+    script.src = "/pages/spin.js?v=" + Date.now();
+    document.body.appendChild(script);
+  });
+</script>
 
 </body>
 </html>
