@@ -144,24 +144,32 @@ body {
   border-left: 2px solid #a020f0;
 }
 
-/* FULL RULES CARD */
+/* FULL RULES CARD (FIXED + PREMIUM) */
 .full-rules-card {
+  height: 230px; /* match flip card height */
   background: linear-gradient(135deg, #a020f0, #ff2bd8);
   color: white;
-  font-size: 24px;
+  font-size: 26px;
+  font-weight: 600;
   text-align: center;
   border-radius: 14px;
   box-shadow: 0 0 25px #ff2bd8;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: 0.25s;
+  padding: 20px;
 }
 
 .full-rules-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 0 35px #ff2bd8;
+}
+
+.full-rules-card strong {
+  font-size: 28px;
 }
 
 /* RESPONSIVE */
