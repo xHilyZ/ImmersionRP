@@ -6,7 +6,7 @@ body {
   color: white;
 }
 
-/* PAGE */
+/* PAGE WRAPPER */
 .spin-wrapper {
   margin-top: 80px;
   text-align: center;
@@ -22,12 +22,13 @@ body {
   margin-bottom: 40px;
 }
 
-/* WHEEL */
+/* WHEEL CONTAINER */
 .wheel-container {
   position: relative;
   display: inline-block;
 }
 
+/* POINTER ARROW */
 .pointer {
   width: 0;
   height: 0;
@@ -39,8 +40,10 @@ body {
   left: 50%;
   transform: translateX(-50%);
   filter: drop-shadow(0 0 10px #ff2bd8);
+  z-index: 10;
 }
 
+/* SPIN BUTTON */
 .spin-btn {
   margin-top: 25px;
   padding: 15px 40px;

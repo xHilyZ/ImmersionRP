@@ -11,7 +11,7 @@ const rewards = [
   "Exclusive Cosmetic",
   "$5,000 Cash",
   "$10,000 Cash",
-  "Free Vehicle Reskin",
+  "Free Bronze Pass",
   "Weapon Crate",
   "Priority Queue Token"
 ];
@@ -20,7 +20,7 @@ const sliceCount = rewards.length;
 const sliceAngle = (2 * Math.PI) / sliceCount;
 let currentRotation = 0;
 
-// Draw wheel with centered labels
+// Draw wheel with centered labels + new font
 function drawWheel() {
   for (let i = 0; i < sliceCount; i++) {
     const start = i * sliceAngle;
@@ -37,7 +37,7 @@ function drawWheel() {
     ctx.rotate(start + sliceAngle / 2);
     ctx.textAlign = "center";
     ctx.fillStyle = "white";
-    ctx.font = "18px Outfit";
+    ctx.font = "bold 20px 'Outfit', sans-serif"; // NEW FONT
     ctx.fillText(rewards[i], 120, 5);
     ctx.restore();
   }
@@ -45,24 +45,8 @@ function drawWheel() {
 
 drawWheel();
 
-// Daily spin lock
-function canSpinToday() {
-  const lastSpin = localStorage.getItem("lastSpinDate");
-  const today = new Date().toDateString();
-  return lastSpin !== today;
-}
-
-function lockSpin() {
-  const today = new Date().toDateString();
-  localStorage.setItem("lastSpinDate", today);
-  spinBtn.disabled = true;
-  spinBtn.innerText = "COME BACK TOMORROW";
-}
-
-// Spin logic
+// Spin logic (daily lock removed)
 spinBtn.onclick = () => {
-  if (!canSpinToday()) return;
-
   const randomSpin = Math.floor(2000 + Math.random() * 3000);
   currentRotation += randomSpin;
 
@@ -74,15 +58,9 @@ spinBtn.onclick = () => {
   setTimeout(() => {
     rewardText.innerHTML = rewards[rewardIndex];
     popup.classList.remove("hidden");
-    lockSpin();
   }, 4000);
 };
 
 function closePopup() {
   popup.classList.add("hidden");
-}
-
-// Disable button if already spun today
-if (!canSpinToday()) {
-  lockSpin();
 }
