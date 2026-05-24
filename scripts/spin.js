@@ -15,49 +15,43 @@ const rewards = [
   { label: "⚡ Priority Queue Token", rarity: "legendary" }
 ];
 
-const ITEM_WIDTH = 130; // must match CSS
-const CENTER_OFFSET = 520 / 2 - ITEM_WIDTH / 2; // center of window
+const ITEM_WIDTH = 130;       // must match CSS
+const WINDOW_WIDTH = 520;     // must match .case-window width
+const CENTER_OFFSET = WINDOW_WIDTH / 2 - ITEM_WIDTH / 2;
+
+let sequence = [];
 
 // Build long strip
 function buildCaseStrip() {
   caseItemsContainer.innerHTML = "";
-  const sequence = [];
+  sequence = [];
 
-  // repeat rewards to make long strip
-  for (let i = 0; i < 40; i++) {
+  const totalItems = 60; // long enough for a nice spin
+
+  for (let i = 0; i < totalItems; i++) {
     const r = rewards[i % rewards.length];
     sequence.push(r);
-  }
 
-  sequence.forEach((r) => {
     const div = document.createElement("div");
     div.className = `case-item ${r.rarity}`;
     div.textContent = r.label;
     caseItemsContainer.appendChild(div);
-  });
-
-  return sequence;
+  }
 }
 
-let sequence = buildCaseStrip();
+buildCaseStrip();
 
 spinBtn.onclick = () => {
-  // pick a random reward
-  const winningIndex = Math.floor(Math.random() * rewards.length);
-  const winningReward = rewards[winningIndex];
+  // pick a random stop index somewhere in the last half of the strip
+  const minStop = 25;
+  const maxStop = sequence.length - 5;
+  const stopIndex = Math.floor(Math.random() * (maxStop - minStop)) + minStop;
 
-  // find a matching item near the end of the strip
-  let stopIndex = sequence.length - 10; // safe zone near end
+  const winningReward = sequence[stopIndex];
 
-  // move backward until we find the matching reward
-  while (sequence[stopIndex % sequence.length].label !== winningReward.label) {
-    stopIndex--;
-  }
-
-  // calculate exact pixel offset so item lands in center
   const targetOffset = stopIndex * ITEM_WIDTH - CENTER_OFFSET;
 
-  // reset instantly
+  // reset
   caseItemsContainer.style.transition = "none";
   caseItemsContainer.style.transform = "translateX(0px)";
   void caseItemsContainer.offsetWidth; // force reflow

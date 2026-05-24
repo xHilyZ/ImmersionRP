@@ -26,8 +26,8 @@ body {
 .case-layout {
   display: flex;
   justify-content: center;
-  gap: 60px;
   align-items: flex-start;
+  gap: 60px;
 }
 
 /* CASE WINDOW */
@@ -39,7 +39,7 @@ body {
 
 .case-window {
   position: relative;
-  width: 520px;
+  width: 520px;          /* IMPORTANT: matches JS WINDOW_WIDTH */
   height: 120px;
   overflow: hidden;
   border-radius: 12px;
@@ -55,7 +55,7 @@ body {
 }
 
 .case-item {
-  min-width: 130px;
+  min-width: 130px;      /* IMPORTANT: matches JS ITEM_WIDTH */
   height: 100%;
   display: flex;
   align-items: center;
