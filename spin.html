@@ -7,23 +7,13 @@
 
 <body>
 
-<!-- HEADER BAR -->
-<div class="header">
-  <div class="header-links">
-    <a href="/home.html">Home</a>
-    <a href="/rules.html">Rules</a>
-    <a href="/support.html">Support</a>
-    <a href="/staff.html">Staff Login</a>
-  </div>
-</div>
-
 <div class="spin-wrapper">
 
   <h1 class="title">Daily Spin Wheel</h1>
   <p class="subtitle">Try your luck and win exclusive rewards</p>
 
   <div class="wheel-container">
-    <div id="wheel" class="wheel"></div>
+    <canvas id="wheelCanvas" width="420" height="420"></canvas>
     <button id="spinBtn" class="spin-btn">SPIN</button>
   </div>
 
@@ -34,6 +24,8 @@
       <button onclick="closePopup()" class="close-btn">Close</button>
     </div>
   </div>
+
+  <canvas id="fireworksCanvas" class="fireworks"></canvas>
 
 </div>
 
