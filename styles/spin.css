@@ -1,3 +1,37 @@
+/* HEADER */
+.header {
+  width: 100%;
+  padding: 15px 0;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(4px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+}
+
+.header-links {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.header-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 15px;
+  border: 1px solid #a020f0;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.header-links a:hover {
+  background: #a020f0;
+  box-shadow: 0 0 12px #a020f0;
+}
+
+/* PAGE */
 body {
   margin: 0;
   padding: 0;
@@ -6,9 +40,8 @@ body {
   color: white;
 }
 
-/* PAGE */
 .spin-wrapper {
-  margin-top: 80px;
+  margin-top: 140px; /* pushes content below header */
   text-align: center;
 }
 
@@ -28,6 +61,7 @@ body {
   justify-content: center;
   align-items: flex-start;
   gap: 60px;
+  width: 100%;
 }
 
 /* CASE WINDOW */
@@ -39,7 +73,7 @@ body {
 
 .case-window {
   position: relative;
-  width: 520px;          /* IMPORTANT: matches JS WINDOW_WIDTH */
+  width: 520px; /* MUST match JS WINDOW_WIDTH */
   height: 120px;
   overflow: hidden;
   border-radius: 12px;
@@ -55,7 +89,7 @@ body {
 }
 
 .case-item {
-  min-width: 130px;      /* IMPORTANT: matches JS ITEM_WIDTH */
+  min-width: 130px; /* MUST match JS ITEM_WIDTH */
   height: 100%;
   display: flex;
   align-items: center;
@@ -66,6 +100,7 @@ body {
   padding: 0 8px;
 }
 
+/* RARITY COLORS */
 .case-item.common {
   background: rgba(255,255,255,0.03);
 }
@@ -94,7 +129,7 @@ body {
   transform: translateX(-50%);
 }
 
-/* BUTTON */
+/* SPIN BUTTON */
 .spin-btn {
   margin-top: 25px;
   padding: 15px 40px;
