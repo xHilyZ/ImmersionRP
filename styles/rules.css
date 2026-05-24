@@ -1,3 +1,4 @@
+/* PAGE BACKGROUND */
 body {
   margin: 0;
   padding: 0;
@@ -39,7 +40,7 @@ body {
   box-shadow: 0 0 12px #a020f0;
 }
 
-/* PAGE TITLE */
+/* TITLES */
 .page-title {
   margin-top: 140px;
   text-align: center;
@@ -53,19 +54,21 @@ body {
   margin-bottom: 40px;
 }
 
-/* GRID */
+/* 3×2 GRID LAYOUT */
 .rules-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 0 30px 60px;
+  grid-template-columns: repeat(3, 1fr); /* EXACTLY 3 per row */
+  gap: 25px;
+  padding: 0 40px 60px;
+  max-width: 1200px;
+  margin: 0 auto; /* center the grid */
 }
 
 /* FLASH CARDS */
 .rule-card {
   perspective: 1000px;
   cursor: pointer;
-  height: 200px;
+  height: 200px; /* compact height */
 }
 
 .card-inner {
@@ -95,11 +98,14 @@ body {
   padding: 15px;
 }
 
+/* FRONT SIDE */
 .card-front {
   background: rgba(0,0,0,0.6);
   font-size: 20px;
+  text-align: center;
 }
 
+/* BACK SIDE */
 .card-back {
   background: rgba(20,20,30,0.95);
   transform: rotateY(180deg);
@@ -115,4 +121,17 @@ body {
 .card-back li {
   margin-bottom: 6px;
   font-size: 14px;
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 900px) {
+  .rules-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .rules-grid {
+    grid-template-columns: repeat(1, 1fr); /* 1 per row on phones */
+  }
 }
