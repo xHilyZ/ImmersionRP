@@ -5,27 +5,22 @@ const spinBtn = document.getElementById("spinBtn");
 const popup = document.getElementById("resultPopup");
 const rewardText = document.getElementById("rewardText");
 
-const fireworksCanvas = document.getElementById("fireworksCanvas");
-const fctx = fireworksCanvas.getContext("2d");
-fireworksCanvas.width = window.innerWidth;
-fireworksCanvas.height = window.innerHeight;
-
 const rewards = [
-  "💰 $5,000 Cash",
-  "💰 $10,000 Cash",
-  "🚗 Free Vehicle Rental",
-  "🔫 Weapon Crate",
-  "🎟 Priority Queue Token",
-  "📦 Mystery Box",
-  "💎 Rare Item",
-  "🏆 Exclusive Cosmetic"
+  "Mystery Box",
+  "Rare Item",
+  "Exclusive Cosmetic",
+  "$5,000 Cash",
+  "$10,000 Cash",
+  "Free Vehicle Reskin",
+  "Weapon Crate",
+  "Priority Queue Token"
 ];
 
 const sliceCount = rewards.length;
 const sliceAngle = (2 * Math.PI) / sliceCount;
 let currentRotation = 0;
 
-// Draw wheel with labels
+// Draw wheel with centered labels
 function drawWheel() {
   for (let i = 0; i < sliceCount; i++) {
     const start = i * sliceAngle;
@@ -40,17 +35,17 @@ function drawWheel() {
     ctx.save();
     ctx.translate(210, 210);
     ctx.rotate(start + sliceAngle / 2);
-    ctx.textAlign = "right";
+    ctx.textAlign = "center";
     ctx.fillStyle = "white";
-    ctx.font = "16px Outfit";
-    ctx.fillText(rewards[i], 180, 5);
+    ctx.font = "18px Outfit";
+    ctx.fillText(rewards[i], 120, 5);
     ctx.restore();
   }
 }
 
 drawWheel();
 
-// One spin per day lock
+// Daily spin lock
 function canSpinToday() {
   const lastSpin = localStorage.getItem("lastSpinDate");
   const today = new Date().toDateString();
@@ -62,34 +57,6 @@ function lockSpin() {
   localStorage.setItem("lastSpinDate", today);
   spinBtn.disabled = true;
   spinBtn.innerText = "COME BACK TOMORROW";
-}
-
-// Fireworks
-function fireworkBurst() {
-  for (let i = 0; i < 40; i++) {
-    const x = fireworksCanvas.width / 2;
-    const y = fireworksCanvas.height / 2;
-
-    const angle = Math.random() * Math.PI * 2;
-    const speed = Math.random() * 5 + 2;
-
-    let px = x;
-    let py = y;
-
-    const interval = setInterval(() => {
-      px += Math.cos(angle) * speed;
-      py += Math.sin(angle) * speed;
-
-      fctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 60%)`;
-      fctx.fillRect(px, py, 4, 4);
-    }, 16);
-
-    setTimeout(() => clearInterval(interval), 600);
-  }
-
-  setTimeout(() => {
-    fctx.clearRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
-  }, 1200);
 }
 
 // Spin logic
@@ -107,7 +74,6 @@ spinBtn.onclick = () => {
   setTimeout(() => {
     rewardText.innerHTML = rewards[rewardIndex];
     popup.classList.remove("hidden");
-    fireworkBurst();
     lockSpin();
   }, 4000);
 };
