@@ -3,27 +3,28 @@ const spinBtn = document.getElementById("spinBtn");
 const popup = document.getElementById("resultPopup");
 const rewardText = document.getElementById("rewardText");
 
+// Rewards WITH emojis
 const rewards = [
-  { label: "Mystery Box", rarity: "epic" },
-  { label: "Rare Item", rarity: "rare" },
-  { label: "Exclusive Cosmetic", rarity: "epic" },
-  { label: "$5,000 Cash", rarity: "common" },
-  { label: "$10,000 Cash", rarity: "common" },
-  { label: "Free Bronze Pass", rarity: "rare" },
-  { label: "Weapon Crate", rarity: "rare" },
-  { label: "Priority Queue Token", rarity: "legendary" }
+  { label: "🎁 Mystery Box", rarity: "epic" },
+  { label: "💎 Rare Item", rarity: "rare" },
+  { label: "✨ Exclusive Cosmetic", rarity: "epic" },
+  { label: "💵 $5,000 Cash", rarity: "common" },
+  { label: "💰 $10,000 Cash", rarity: "common" },
+  { label: "🥉 Free Bronze Pass", rarity: "rare" },
+  { label: "🔫 Weapon Crate", rarity: "rare" },
+  { label: "⚡ Priority Queue Token", rarity: "legendary" }
 ];
 
-const ITEM_WIDTH = 130; // must match CSS min-width
-const VISIBLE_CENTER_INDEX = 6; // where we want the winning item to land
+const ITEM_WIDTH = 130; // must match CSS
+const CENTER_OFFSET = 520 / 2 - ITEM_WIDTH / 2; // center of window
 
-// Build long strip of items
+// Build long strip
 function buildCaseStrip() {
   caseItemsContainer.innerHTML = "";
   const sequence = [];
 
-  // repeat rewards to make a long strip
-  for (let i = 0; i < 30; i++) {
+  // repeat rewards to make long strip
+  for (let i = 0; i < 40; i++) {
     const r = rewards[i % rewards.length];
     sequence.push(r);
   }
@@ -41,20 +42,27 @@ function buildCaseStrip() {
 let sequence = buildCaseStrip();
 
 spinBtn.onclick = () => {
-  // pick a random reward index from the base rewards
-  const winningRewardIndex = Math.floor(Math.random() * rewards.length);
-  const winningReward = rewards[winningRewardIndex];
+  // pick a random reward
+  const winningIndex = Math.floor(Math.random() * rewards.length);
+  const winningReward = rewards[winningIndex];
 
-  // choose a position in the strip near the end to stop on
-  const stopIndex = sequence.length - 1 - (rewards.length - winningRewardIndex);
-  const targetOffset = (stopIndex - VISIBLE_CENTER_INDEX) * ITEM_WIDTH;
+  // find a matching item near the end of the strip
+  let stopIndex = sequence.length - 10; // safe zone near end
 
+  // move backward until we find the matching reward
+  while (sequence[stopIndex % sequence.length].label !== winningReward.label) {
+    stopIndex--;
+  }
+
+  // calculate exact pixel offset so item lands in center
+  const targetOffset = stopIndex * ITEM_WIDTH - CENTER_OFFSET;
+
+  // reset instantly
   caseItemsContainer.style.transition = "none";
   caseItemsContainer.style.transform = "translateX(0px)";
+  void caseItemsContainer.offsetWidth; // force reflow
 
-  // force reflow
-  void caseItemsContainer.offsetWidth;
-
+  // animate
   caseItemsContainer.style.transition = "transform 4s cubic-bezier(.17,.67,.14,.93)";
   caseItemsContainer.style.transform = `translateX(-${targetOffset}px)`;
 
