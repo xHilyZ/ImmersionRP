@@ -41,7 +41,7 @@ body {
 
 /* HERO SECTION */
 .hero {
-  height: 60vh;
+  height: 65vh;
   background: url('/assets/gta-palm-bg.jpg?v=4') center/cover no-repeat;
   position: relative;
 }
@@ -57,7 +57,7 @@ body {
 }
 
 .logo {
-  width: 280px;
+  width: 260px;
   margin-bottom: 20px;
   filter: drop-shadow(0 0 20px #a020f0);
 }
@@ -110,17 +110,21 @@ h1 {
   box-shadow: 0 0 30px #5865F2;
 }
 
+/* PAGE WRAPPER */
+.page-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
 /* ABOUT SECTION */
 .about-section {
-  max-width: 1100px;
-  margin: 60px auto;
-  padding: 0 20px;
-  color: white;
+  margin-top: 40px;
 }
 
 .about-section h2 {
   text-align: center;
-  font-size: 36px;
+  font-size: 38px;
   margin-bottom: 15px;
   text-shadow: 0 0 12px #a020f0;
 }
@@ -135,16 +139,22 @@ h1 {
 
 .about-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 25px;
 }
 
 .about-card {
-  background: rgba(15, 15, 25, 0.9);
+  background: rgba(20, 20, 30, 0.85);
   border: 1px solid #2b1048;
   border-radius: 12px;
   padding: 25px;
   box-shadow: 0 0 18px rgba(160, 32, 240, 0.25);
+  transition: 0.25s;
+}
+
+.about-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(255, 43, 216, 0.4);
 }
 
 .about-card h3 {
@@ -171,4 +181,13 @@ h1 {
   opacity: 0.9;
   line-height: 1.6;
   text-shadow: 0 0 10px #a020f0;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 25px;
+  margin-top: 40px;
+  opacity: 0.6;
+  font-size: 14px;
 }
