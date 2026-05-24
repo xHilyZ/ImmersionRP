@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Outfit', sans-serif;
+  background: #000;
+  color: white;
+}
+
+/* HERO SECTION */
+.hero {
+  height: 60vh;
+  background: url('/assets/immersion-bg.jpg') center/cover no-repeat;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(2px);
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.logo {
+  width: 350px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 20px #a020f0);
+}
+
+h1 {
+  font-size: 48px;
+  margin: 0;
+  text-shadow: 0 0 15px #a020f0;
+}
+
+.tagline {
+  font-size: 18px;
+  opacity: 0.85;
+  margin-bottom: 30px;
+}
+
+.main-buttons button {
+  margin: 10px;
+  padding: 14px 35px;
+  background: linear-gradient(90deg, #a020f0, #ff2bd8);
+  border: none;
+  color: white;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 20px #a020f0;
+  transition: 0.2s;
+}
+
+.main-buttons button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px #ff2bd8;
+}
+
+/* SECTIONS */
+.sections {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 0 20px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.tile {
+  background: rgba(15, 15, 25, 0.9);
+  border: 1px solid #2b1048;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 0 18px rgba(160, 32, 240, 0.25);
+}
+
+.tile:hover {
+  background: #1a0030;
+  box-shadow: 0 0 25px #a020f0;
+}
+
+.tile h2 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.tile p {
+  opacity: 0.85;
+  font-size: 14px;
+}
