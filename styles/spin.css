@@ -35,7 +35,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: url('/assets/gta-palm-bg.jpg') center/cover no-repeat fixed;
+  background: url('../assets/gta-palm-bg.jpg') center/cover no-repeat fixed;
   font-family: 'Outfit', sans-serif;
   color: white;
 }
