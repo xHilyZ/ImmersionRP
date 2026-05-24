@@ -15,23 +15,12 @@ const rewards = [
   { label: "⚡ Priority Queue Token", rarity: "legendary" }
 ];
 
-const ITEM_WIDTH = 130;       // must match CSS
-const WINDOW_WIDTH = 520;     // must match .case-window width
-const CENTER_OFFSET = WINDOW_WIDTH / 2 - ITEM_WIDTH / 2;
-
-let sequence = [];
-
-// Build long strip
 function buildCaseStrip() {
   caseItemsContainer.innerHTML = "";
-  sequence = [];
 
-  const totalItems = 60; // long enough for a nice spin
-
-  for (let i = 0; i < totalItems; i++) {
+  // long strip
+  for (let i = 0; i < 60; i++) {
     const r = rewards[i % rewards.length];
-    sequence.push(r);
-
     const div = document.createElement("div");
     div.className = `case-item ${r.rarity}`;
     div.textContent = r.label;
@@ -42,27 +31,44 @@ function buildCaseStrip() {
 buildCaseStrip();
 
 spinBtn.onclick = () => {
-  // pick a random stop index somewhere in the last half of the strip
-  const minStop = 25;
-  const maxStop = sequence.length - 5;
-  const stopIndex = Math.floor(Math.random() * (maxStop - minStop)) + minStop;
+  // random distance to move (in px)
+  const maxShift = 130 * 40; // 40 items worth
+  const targetShift = Math.floor(Math.random() * maxShift) + 130 * 10;
 
-  const winningReward = sequence[stopIndex];
-
-  const targetOffset = stopIndex * ITEM_WIDTH - CENTER_OFFSET;
-
-  // reset
   caseItemsContainer.style.transition = "none";
   caseItemsContainer.style.transform = "translateX(0px)";
-  void caseItemsContainer.offsetWidth; // force reflow
+  void caseItemsContainer.offsetWidth;
 
-  // animate
   caseItemsContainer.style.transition = "transform 4s cubic-bezier(.17,.67,.14,.93)";
-  caseItemsContainer.style.transform = `translateX(-${targetOffset}px)`;
+  caseItemsContainer.style.transform = `translateX(-${targetShift}px)`;
 
   setTimeout(() => {
-    rewardText.textContent = winningReward.label;
-    popup.classList.remove("hidden");
+    const windowRect = document
+      .querySelector(".case-window")
+      .getBoundingClientRect();
+    const centerX = windowRect.left + windowRect.width / 2;
+
+    const items = Array.from(
+      document.querySelectorAll(".case-item")
+    );
+
+    let closestItem = null;
+    let closestDist = Infinity;
+
+    items.forEach((item) => {
+      const rect = item.getBoundingClientRect();
+      const itemCenter = rect.left + rect.width / 2;
+      const dist = Math.abs(itemCenter - centerX);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closestItem = item;
+      }
+    });
+
+    if (closestItem) {
+      rewardText.textContent = closestItem.textContent;
+      popup.classList.remove("hidden");
+    }
   }, 4000);
 };
 
