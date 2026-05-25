@@ -29,14 +29,12 @@ function drawWheel() {
   for (let i = 0; i < segments.length; i++) {
     const angle = startAngle + i * arc;
 
-    // Slice
     ctx.beginPath();
     ctx.fillStyle = colors[i];
     ctx.moveTo(175, 175);
     ctx.arc(175, 175, 175, angle, angle + arc);
     ctx.fill();
 
-    // Text
     ctx.save();
     ctx.translate(175, 175);
     ctx.rotate(angle + arc / 2);
@@ -48,25 +46,53 @@ function drawWheel() {
   }
 }
 
+function getReward(finalAngle) {
+  const arc = (2 * Math.PI) / segments.length;
+  const index = Math.floor(((2 * Math.PI - finalAngle) % (2 * Math.PI)) / arc);
+  return segments[index];
+}
+
+function showPopup(reward) {
+  const popup = document.createElement("div");
+  popup.className = "reward-popup";
+
+  popup.innerHTML = `
+    <div class="reward-box">
+      <h2>🎉 You Won!</h2>
+      <p>${reward}</p>
+      <button id="closePopup">Close</button>
+    </div>
+  `;
+
+  document.body.appendChild(popup);
+
+  document.getElementById("closePopup").onclick = () => {
+    popup.remove();
+  };
+}
+
 function spinWheel() {
   if (spinning) return;
   spinning = true;
 
   let spinTime = 0;
-  const spinDuration = 3000; // 3 seconds
-  const spinAngle = Math.random() * 2000 + 2000; // random spin power
+  const spinDuration = 3000;
+  const spinAngle = Math.random() * 2000 + 2000;
 
   function rotate() {
     spinTime += 20;
 
     if (spinTime >= spinDuration) {
       spinning = false;
+
+      const finalAngle = startAngle % (2 * Math.PI);
+      const reward = getReward(finalAngle);
+
+      showPopup(reward);
       return;
     }
 
-    // Smooth easing
     startAngle += (spinAngle / spinDuration) * 20 * Math.PI / 180;
-
     drawWheel();
     requestAnimationFrame(rotate);
   }
@@ -74,8 +100,5 @@ function spinWheel() {
   rotate();
 }
 
-// Initial draw
 drawWheel();
-
-// Button click
 spinButton.addEventListener("click", spinWheel);
