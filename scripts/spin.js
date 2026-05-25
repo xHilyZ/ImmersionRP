@@ -92,7 +92,9 @@ function spinWheel() {
       return;
     }
 
-    startAngle += (spinAngle / spinDuration) * 20 * Math.PI / 180;
+    // FIXED ROTATION SPEED
+    startAngle += (spinAngle / spinDuration) * 0.1;
+
     drawWheel();
     requestAnimationFrame(rotate);
   }
