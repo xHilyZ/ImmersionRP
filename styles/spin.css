@@ -1,205 +1,66 @@
-/* HEADER */
-.header {
-  width: 100%;
-  padding: 15px 0;
-  background: rgba(0,0,0,0.65);
-  backdrop-filter: blur(4px);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 50;
-}
-
-.header-links {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
-
-.header-links a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  padding: 8px 15px;
-  border: 1px solid #a020f0;
-  border-radius: 6px;
-  transition: 0.2s;
-}
-
-.header-links a:hover {
-  background: #a020f0;
-  box-shadow: 0 0 12px #a020f0;
-}
-
-/* PAGE */
 body {
   margin: 0;
   padding: 0;
-  background: url('../assets/gta-palm-bg.jpg') center/cover no-repeat fixed;
   font-family: 'Outfit', sans-serif;
   color: white;
+  background: url('/assets/gta-palm-bg.jpg') center/cover no-repeat fixed;
 }
 
-.spin-wrapper {
-  margin-top: 140px;
+.spin-page {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  padding: 120px 40px;
+}
+
+.spin-wheel-area {
   text-align: center;
 }
 
-.title {
-  font-size: 48px;
-  text-shadow: 0 0 15px #a020f0;
+#spinWheel {
+  border-radius: 50%;
+  box-shadow: 0 0 25px #a020f0;
 }
 
-.subtitle {
-  opacity: 0.8;
-  margin-bottom: 40px;
-}
-
-/* LAYOUT */
-.case-layout {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 60px;
-  width: 100%;
-}
-
-/* CASE WINDOW */
-.case-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.case-window {
-  position: relative;
-  width: 520px;
-  height: 120px;
-  overflow: hidden;
-  border-radius: 12px;
-  border: 1px solid #a020f0;
-  box-shadow: 0 0 20px #a020f0;
-  background: rgba(0,0,0,0.7);
-}
-
-.case-items {
-  display: flex;
-  height: 100%;
-  transition: transform 4s cubic-bezier(.17,.67,.14,.93);
-}
-
-.case-item {
-  min-width: 130px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-right: 1px solid rgba(255,255,255,0.08);
-  font-size: 14px;
-  text-align: center;
-  padding: 0 8px;
-}
-
-/* RARITY COLORS */
-.case-item.common { background: rgba(255,255,255,0.03); }
-.case-item.rare { background: rgba(88, 101, 242, 0.18); }
-.case-item.epic { background: rgba(255, 43, 216, 0.18); }
-.case-item.legendary { background: rgba(255, 215, 0, 0.18); }
-
-/* CENTER MARKER */
-.case-marker {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 2px;
-  height: 100%;
-  background: #ff2bd8;
-  box-shadow: 0 0 12px #ff2bd8;
-  transform: translateX(-50%);
-}
-
-/* SPIN BUTTON */
 .spin-btn {
   margin-top: 25px;
-  padding: 15px 40px;
+  padding: 14px 40px;
   font-size: 22px;
-  background: linear-gradient(90deg, #a020f0, #ff2bd8);
+  background: #a020f0;
+  color: white;
   border: none;
   border-radius: 10px;
-  color: white;
   cursor: pointer;
+  transition: 0.25s;
   box-shadow: 0 0 20px #a020f0;
-  transition: 0.2s;
 }
 
 .spin-btn:hover {
-  transform: scale(1.05);
+  background: #ff2bd8;
   box-shadow: 0 0 30px #ff2bd8;
 }
 
-/* REWARD LIST */
-.reward-list {
-  background: rgba(0,0,0,0.55);
-  padding: 20px 25px;
+.spin-rewards {
+  background: rgba(0,0,0,0.65);
+  padding: 25px 35px;
   border-radius: 12px;
   border: 1px solid #a020f0;
-  width: 260px;
-  box-shadow: 0 0 15px #a020f0;
+  box-shadow: 0 0 20px #a020f0;
 }
 
-.reward-list h3 {
+.spin-rewards h2 {
   margin-top: 0;
-  margin-bottom: 15px;
-  font-size: 22px;
-  text-shadow: 0 0 10px #ff2bd8;
+  text-shadow: 0 0 15px #a020f0;
 }
 
-.reward-list ul {
+.spin-rewards ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.reward-list li {
+.spin-rewards li {
   padding: 8px 0;
+  font-size: 18px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  font-size: 16px;
-}
-
-.reward-list li:last-child {
-  border-bottom: none;
-}
-
-/* POPUP */
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hidden { display: none; }
-
-.popup-content {
-  background: rgba(20, 20, 30, 0.95);
-  padding: 30px;
-  border-radius: 12px;
-  border: 1px solid #a020f0;
-  box-shadow: 0 0 25px #a020f0;
-  text-align: center;
-}
-
-.close-btn {
-  margin-top: 20px;
-  padding: 10px 25px;
-  background: #a020f0;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
 }

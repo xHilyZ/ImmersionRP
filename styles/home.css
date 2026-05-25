@@ -85,7 +85,49 @@ body {
   text-shadow: 0 0 10px #ff2bd8;
 }
 
-/* HERO SECTION — CLEAN SMALL VERSION */
+/* NAVBAR USER BADGE */
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 14px;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid #a020f0;
+  border-radius: 8px;
+  box-shadow: 0 0 12px #a020f0;
+}
+
+.nav-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #a020f0;
+}
+
+.nav-username {
+  font-size: 15px;
+  color: white;
+  font-weight: 500;
+  text-shadow: 0 0 10px #a020f0;
+}
+
+.logout-btn {
+  background: #ff4444;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.25s;
+}
+
+.logout-btn:hover {
+  background: #cc0000;
+  box-shadow: 0 0 12px #ff2bd8;
+}
+
+/* HERO SECTION */
 .hero {
   position: relative;
   height: 70vh;
@@ -145,7 +187,6 @@ body {
   transition: 0.25s;
 }
 
-/* Purple play button */
 .btn-play {
   background: #a020f0;
   color: white;
@@ -155,7 +196,6 @@ body {
   background: #ff2bd8;
 }
 
-/* Transparent Discord button */
 .btn-discord {
   background: rgba(255,255,255,0.1);
   color: white;
@@ -166,7 +206,7 @@ body {
   background: rgba(255,255,255,0.2);
 }
 
-/* STATUS BAR — CLEAN */
+/* STATUS BAR */
 .hero-status {
   margin-top: 35px;
   font-size: 16px;
@@ -185,76 +225,50 @@ body {
   box-shadow: 0 0 8px #00ff6a;
 }
 
-/* DAILY SPIN PREVIEW */
-.spin-preview {
+/* HOMEPAGE SPIN + FEATURED SIDE-BY-SIDE */
+.home-spin-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
   padding: 60px 40px;
+  align-items: center;
+}
+
+.spin-left {
   text-align: center;
 }
 
-.spin-preview h2 {
-  font-size: 40px;
-  text-shadow: 0 0 15px #a020f0;
+.spin-preview-wheel {
+  margin: 20px auto;
+  width: 220px;
+  height: 220px;
+  filter: drop-shadow(0 0 15px #a020f0);
 }
 
-.spin-sub {
-  opacity: 0.8;
-  margin-top: -10px;
-  margin-bottom: 25px;
-}
-
-.spin-wrapper {
-  position: relative;
+.btn-spin-page {
   display: inline-block;
   margin-top: 20px;
-}
-
-#spinWheel {
-  border-radius: 50%;
-  box-shadow: 0 0 25px #a020f0;
-}
-
-.spin-pointer {
-  width: 0;
-  height: 0;
-  border-left: 18px solid transparent;
-  border-right: 18px solid transparent;
-  border-bottom: 28px solid #ff2bd8;
-  position: absolute;
-  top: -35px;
-  left: 50%;
-  transform: translateX(-50%);
-  filter: drop-shadow(0 0 10px #ff2bd8);
-}
-
-.spin-btn {
-  margin-top: 20px;
-  padding: 12px 35px;
-  font-size: 20px;
+  padding: 12px 28px;
   background: #a020f0;
   color: white;
-  border: none;
   border-radius: 8px;
-  cursor: pointer;
-  transition: 0.25s;
+  text-decoration: none;
+  font-size: 18px;
   box-shadow: 0 0 15px #a020f0;
+  transition: 0.25s;
 }
 
-.spin-btn:hover {
+.btn-spin-page:hover {
   background: #ff2bd8;
   box-shadow: 0 0 25px #ff2bd8;
 }
 
-/* FEATURED SECTION */
-.featured {
-  padding: 60px 40px;
-  text-align: center;
-}
-
-.featured h2 {
+.spin-right h2 {
   font-size: 40px;
   text-shadow: 0 0 15px #a020f0;
 }
 
+/* FEATURED SECTION */
 .featured-box {
   margin-top: 30px;
   display: flex;
@@ -478,46 +492,4 @@ footer {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-/* NAVBAR USER BADGE */
-.nav-user {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 6px 14px;
-  background: rgba(0,0,0,0.55);
-  border: 1px solid #a020f0;
-  border-radius: 8px;
-  box-shadow: 0 0 12px #a020f0;
-}
-
-.nav-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #a020f0;
-}
-
-.nav-username {
-  font-size: 15px;
-  color: white;
-  font-weight: 500;
-  text-shadow: 0 0 10px #a020f0;
-}
-
-.logout-btn {
-  background: #ff4444;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.25s;
-}
-
-.logout-btn:hover {
-  background: #cc0000;
-  box-shadow: 0 0 12px #ff2bd8;
 }

@@ -2,69 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Immersion Roleplay — Daily Spin</title>
+  <title>Daily Spin</title>
   <link rel="stylesheet" href="styles/spin.css">
+  <script defer src="scripts/spin.js"></script>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="header-links">
-    <a href="index.html">Home</a>
-    <a href="home.html">Play Now</a>
-    <a href="rules.html">Rules</a>
-    <a href="support.html">Support</a>
-    <a href="staff.html">Staff Login</a>
+<header class="nav-header">
+  <div class="nav-container">
+    <a href="index.html" class="nav-title">IMMERSION RP</a>
   </div>
-</div>
+</header>
 
-<div class="spin-wrapper">
-
-  <h1 class="title">Daily Case Spin</h1>
-  <p class="subtitle">Try your luck and win exclusive rewards</p>
-
-  <div class="case-layout">
-
-    <!-- SPINNER -->
-    <div class="case-container">
-      <div class="case-window">
-        <div class="case-items" id="caseItems"></div>
-        <div class="case-marker"></div>
-      </div>
-      <button id="spinBtn" class="spin-btn">SPIN</button>
-    </div>
-
-    <!-- REWARD LIST -->
-    <div class="reward-list">
-      <h3>Possible Rewards</h3>
-      <ul>
-        <li>🎁 Mystery Box</li>
-        <li>💎 Rare Item</li>
-        <li>✨ Exclusive Cosmetic</li>
-        <li>💵 $5,000 Cash</li>
-        <li>💰 $10,000 Cash</li>
-        <li>🥉 Free Bronze Pass</li>
-        <li>🔫 Weapon Crate</li>
-        <li>⚡ Priority Queue Token</li>
-      </ul>
-    </div>
-
+<section class="spin-page">
+  <div class="spin-wheel-area">
+    <canvas id="spinWheel" width="350" height="350"></canvas>
+    <button id="spinButton" class="spin-btn">SPIN</button>
   </div>
 
-  <!-- POPUP -->
-  <div id="resultPopup" class="popup hidden">
-    <div class="popup-content">
-      <h2>You Won!</h2>
-      <p id="rewardText"></p>
-      <button onclick="closePopup()" class="close-btn">Close</button>
-    </div>
+  <div class="spin-rewards">
+    <h2>Possible Rewards</h2>
+    <ul>
+      <li>100 Coins</li>
+      <li>200 Coins</li>
+      <li>300 Coins</li>
+      <li>400 Coins</li>
+      <li>500 Coins</li>
+      <li>600 Coins</li>
+      <li>700 Coins</li>
+      <li>800 Coins</li>
+    </ul>
   </div>
-
-</div>
-
-<!-- CORRECT SCRIPT PATH -->
-<script src="scripts/spin.js"></script>
+</section>
 
 </body>
 </html>

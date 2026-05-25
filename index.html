@@ -6,7 +6,6 @@
 
   <link rel="stylesheet" href="styles/home.css">
   <script defer src="scripts/gallery.js"></script>
-  <script defer src="scripts/spin.js"></script>
 </head>
 
 <body>
@@ -29,7 +28,6 @@
       <a href="store.html">Store</a>
       <a href="staff-login.html">Staff Portal</a>
 
-      <!-- LOGIN BUTTON -->
       <a href="/api/auth/discord/discord" class="btn-discord login-btn">Login with Discord</a>
     </nav>
 
@@ -61,36 +59,39 @@
   </div>
 </section>
 
-<!-- DAILY SPIN PREVIEW SECTION -->
-<section class="spin-preview">
-  <h2>Daily Spin</h2>
-  <p class="spin-sub">Try your luck — spin for rewards!</p>
+<!-- DAILY SPIN + FEATURED UPDATE -->
+<section class="home-spin-feature">
+  
+  <!-- LEFT: MINI WHEEL -->
+  <div class="spin-left">
+    <h2>Daily Spin</h2>
+    <p class="spin-sub">Try your luck — win rewards daily.</p>
 
-  <div class="spin-wrapper">
-    <div class="spin-pointer"></div>
+    <div class="spin-preview-wheel">
+      <canvas id="miniWheel" width="220" height="220"></canvas>
+    </div>
 
-    <canvas id="spinWheel" width="350" height="350"></canvas>
-
-    <button id="spinButton" class="spin-btn">SPIN</button>
+    <a href="spin.html" class="btn-spin-page">Go to Daily Spin</a>
   </div>
-</section>
 
-<!-- FEATURED SECTION -->
-<section class="featured">
-  <h2>Featured Update</h2>
+  <!-- RIGHT: FEATURED UPDATE -->
+  <div class="spin-right">
+    <h2>Featured Update</h2>
 
-  <div class="featured-box">
-    <img src="https://i.imgur.com/XcQvaRJ.png" alt="Featured GTA Image">
+    <div class="featured-box">
+      <img src="https://i.imgur.com/XcQvaRJ.png" alt="Featured GTA Image">
 
-    <div class="featured-text">
-      <h3>Immersion 2.0 — Major Update</h3>
-      <p>
-        A massive overhaul to jobs, crime, UI, vehicles, and performance.  
-        Experience the next evolution of Immersion RP.
-      </p>
-      <a href="#" class="btn-feature">Learn More</a>
+      <div class="featured-text">
+        <h3>Immersion 2.0 — Major Update</h3>
+        <p>
+          A massive overhaul to jobs, crime, UI, vehicles, and performance.  
+          Experience the next evolution of Immersion RP.
+        </p>
+        <a href="#" class="btn-feature">Learn More</a>
+      </div>
     </div>
   </div>
+
 </section>
 
 <!-- PATCH NOTES -->
@@ -147,6 +148,30 @@
   <p>© 2026 Immersion RP — All Rights Reserved</p>
 </footer>
 
+<!-- MINI WHEEL SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById("miniWheel");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+
+  const slices = ["100","200","300","400","500","600","700","800"];
+  const colors = ["#a020f0","#ff2bd8","#a020f0","#ff2bd8","#a020f0","#ff2bd8","#a020f0","#ff2bd8"];
+  const arc = (2 * Math.PI) / slices.length;
+
+  for (let i = 0; i < slices.length; i++) {
+    const angle = i * arc;
+
+    ctx.beginPath();
+    ctx.fillStyle = colors[i];
+    ctx.moveTo(110, 110);
+    ctx.arc(110, 110, 110, angle, angle + arc);
+    ctx.fill();
+  }
+});
+</script>
+
 <!-- LOGIN / LOGOUT / AVATAR SCRIPT -->
 <script>
   function getCookie(name) {
@@ -173,7 +198,6 @@
     const user = await fetchDiscordUser(id);
     if (!user) return;
 
-    // Remove login button
     const loginBtn = document.querySelector(".login-btn");
     if (loginBtn) loginBtn.remove();
 
