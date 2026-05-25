@@ -168,6 +168,65 @@ body {
   box-shadow: 0 0 8px #00ff6a;
 }
 
+/* DAILY SPIN PREVIEW */
+.spin-preview {
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.spin-preview h2 {
+  font-size: 40px;
+  text-shadow: 0 0 15px #a020f0;
+}
+
+.spin-sub {
+  opacity: 0.8;
+  margin-top: -10px;
+  margin-bottom: 25px;
+}
+
+.spin-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+#spinWheel {
+  border-radius: 50%;
+  box-shadow: 0 0 25px #a020f0;
+}
+
+.spin-pointer {
+  width: 0;
+  height: 0;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 28px solid #ff2bd8;
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 0 10px #ff2bd8);
+}
+
+.spin-btn {
+  margin-top: 20px;
+  padding: 12px 35px;
+  font-size: 20px;
+  background: #a020f0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 0 15px #a020f0;
+}
+
+.spin-btn:hover {
+  background: #ff2bd8;
+  box-shadow: 0 0 25px #ff2bd8;
+}
+
 /* FEATURED SECTION */
 .featured {
   padding: 60px 40px;

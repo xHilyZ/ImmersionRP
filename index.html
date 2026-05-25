@@ -6,6 +6,7 @@
 
   <link rel="stylesheet" href="styles/home.css">
   <script defer src="scripts/gallery.js"></script>
+  <script defer src="scripts/spin.js"></script>
 </head>
 
 <body>
@@ -49,11 +50,25 @@
     </div>
 
     <div class="hero-status">
-      <span>130 Players Online</span>
+      <span>0 Players Online</span>
       <span class="status-dot"></span>
       <span>Server Status: Online</span>
     </div>
 
+  </div>
+</section>
+
+<!-- DAILY SPIN PREVIEW SECTION -->
+<section class="spin-preview">
+  <h2>Daily Spin</h2>
+  <p class="spin-sub">Try your luck — spin for rewards!</p>
+
+  <div class="spin-wrapper">
+    <div class="spin-pointer"></div>
+
+    <canvas id="spinWheel" width="350" height="350"></canvas>
+
+    <button id="spinButton" class="spin-btn">SPIN</button>
   </div>
 </section>
 

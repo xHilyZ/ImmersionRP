@@ -1,72 +1,81 @@
-const caseItemsContainer = document.getElementById("caseItems");
-const spinBtn = document.getElementById("spinBtn");
-const popup = document.getElementById("resultPopup");
-const rewardText = document.getElementById("rewardText");
+const wheel = document.getElementById("spinWheel");
+const ctx = wheel.getContext("2d");
+const spinButton = document.getElementById("spinButton");
 
-// Rewards WITH emojis
-const rewards = [
-  { label: "🎁 Mystery Box", rarity: "epic" },
-  { label: "💎 Rare Item", rarity: "rare" },
-  { label: "✨ Exclusive Cosmetic", rarity: "epic" },
-  { label: "💵 $5,000 Cash", rarity: "common" },
-  { label: "💰 $10,000 Cash", rarity: "common" },
-  { label: "🥉 Free Bronze Pass", rarity: "rare" },
-  { label: "🔫 Weapon Crate", rarity: "rare" },
-  { label: "⚡ Priority Queue Token", rarity: "legendary" }
+const segments = [
+  "20% OFF",
+  "30% OFF",
+  "50% OFF",
+  "$5 Gift Card",
+  "$10 Gift Card",
+  "70% OFF"
 ];
 
-// Build long strip
-function buildCaseStrip() {
-  caseItemsContainer.innerHTML = "";
+const colors = [
+  "#a020f0",
+  "#ff2bd8",
+  "#a020f0",
+  "#ff2bd8",
+  "#a020f0",
+  "#ff2bd8"
+];
 
-  for (let i = 0; i < 60; i++) {
-    const r = rewards[i % rewards.length];
-    const div = document.createElement("div");
-    div.className = `case-item ${r.rarity}`;
-    div.textContent = r.label;
-    caseItemsContainer.appendChild(div);
+let startAngle = 0;
+let spinning = false;
+
+function drawWheel() {
+  const arc = (2 * Math.PI) / segments.length;
+
+  for (let i = 0; i < segments.length; i++) {
+    const angle = startAngle + i * arc;
+
+    // Slice
+    ctx.beginPath();
+    ctx.fillStyle = colors[i];
+    ctx.moveTo(175, 175);
+    ctx.arc(175, 175, 175, angle, angle + arc);
+    ctx.fill();
+
+    // Text
+    ctx.save();
+    ctx.translate(175, 175);
+    ctx.rotate(angle + arc / 2);
+    ctx.textAlign = "right";
+    ctx.fillStyle = "white";
+    ctx.font = "bold 18px Outfit";
+    ctx.fillText(segments[i], 160, 10);
+    ctx.restore();
   }
 }
 
-buildCaseStrip();
+function spinWheel() {
+  if (spinning) return;
+  spinning = true;
 
-spinBtn.onclick = () => {
-  const maxShift = 130 * 40;
-  const targetShift = Math.floor(Math.random() * maxShift) + 130 * 10;
+  let spinTime = 0;
+  const spinDuration = 3000; // 3 seconds
+  const spinAngle = Math.random() * 2000 + 2000; // random spin power
 
-  caseItemsContainer.style.transition = "none";
-  caseItemsContainer.style.transform = "translateX(0px)";
-  void caseItemsContainer.offsetWidth;
+  function rotate() {
+    spinTime += 20;
 
-  caseItemsContainer.style.transition = "transform 4s cubic-bezier(.17,.67,.14,.93)";
-  caseItemsContainer.style.transform = `translateX(-${targetShift}px)`;
-
-  setTimeout(() => {
-    const windowRect = document.querySelector(".case-window").getBoundingClientRect();
-    const centerX = windowRect.left + windowRect.width / 2;
-
-    const items = Array.from(document.querySelectorAll(".case-item"));
-
-    let closestItem = null;
-    let closestDist = Infinity;
-
-    items.forEach((item) => {
-      const rect = item.getBoundingClientRect();
-      const itemCenter = rect.left + rect.width / 2;
-      const dist = Math.abs(itemCenter - centerX);
-      if (dist < closestDist) {
-        closestDist = dist;
-        closestItem = item;
-      }
-    });
-
-    if (closestItem) {
-      rewardText.textContent = closestItem.textContent;
-      popup.classList.remove("hidden");
+    if (spinTime >= spinDuration) {
+      spinning = false;
+      return;
     }
-  }, 4000);
-};
 
-function closePopup() {
-  popup.classList.add("hidden");
+    // Smooth easing
+    startAngle += (spinAngle / spinDuration) * 20 * Math.PI / 180;
+
+    drawWheel();
+    requestAnimationFrame(rotate);
+  }
+
+  rotate();
 }
+
+// Initial draw
+drawWheel();
+
+// Button click
+spinButton.addEventListener("click", spinWheel);
