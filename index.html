@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Immersion RP</title>
   <link rel="stylesheet" href="styles/home.css">
+  <script defer src="scripts/gallery.js"></script>
 </head>
 
 <body>
@@ -12,7 +13,7 @@
 <section class="hero">
   <div class="hero-content">
     <h1>IMMERSION RP</h1>
-    <p>Welcome to Melbourne’s most immersive FiveM experience.</p>
+    <p>Melbourne’s most immersive FiveM experience.</p>
 
     <div class="hero-buttons">
       <a href="fivem://connect/yourserverip" class="btn-primary">Play Now</a>
@@ -21,60 +22,75 @@
   </div>
 </section>
 
-<!-- QUICK LINKS -->
-<section class="quick-links">
-  <div class="link-card" onclick="location.href='home.html'">
-    <div class="icon">🎮</div>
-    <h3>Play Now</h3>
-  </div>
+<!-- FEATURED SECTION -->
+<section class="featured">
+  <h2>Featured Update</h2>
 
-  <div class="link-card" onclick="location.href='rules.html'">
-    <div class="icon">📘</div>
-    <h3>Rules</h3>
-  </div>
+  <div class="featured-box">
+    <img src="https://i.imgur.com/8fKQJ7B.jpeg" alt="Featured GTA Image">
 
-  <div class="link-card" onclick="location.href='support.html'">
-    <div class="icon">💬</div>
-    <h3>Support</h3>
-  </div>
-
-  <div class="link-card" onclick="location.href='spin.html'">
-    <div class="icon">🎁</div>
-    <h3>Daily Spin</h3>
-  </div>
-
-  <div class="link-card" onclick="location.href='staff-login.html'">
-    <div class="icon">🛡️</div>
-    <h3>Staff Login</h3>
-  </div>
-</section>
-
-<!-- ABOUT SECTION -->
-<section class="about">
-  <h2>About Immersion RP</h2>
-  <p>
-    Immersion RP is a high‑quality FiveM server built for serious roleplay, 
-    unique experiences, and a strong community.  
-    Our goal is to deliver a polished, realistic, and fun environment for all players.
-  </p>
-
-  <div class="about-features">
-    <div class="feature-card">
-      <h3>⚡ Optimized Performance</h3>
-      <p>Fast loading, smooth gameplay, and stable systems.</p>
-    </div>
-
-    <div class="feature-card">
-      <h3>🎭 Serious Roleplay</h3>
-      <p>High standards, strong stories, and immersive characters.</p>
-    </div>
-
-    <div class="feature-card">
-      <h3>🚓 Active Staff</h3>
-      <p>Friendly, fair, and always available to help.</p>
+    <div class="featured-text">
+      <h3>Immersion 2.0 — Major Update</h3>
+      <p>
+        A massive overhaul to jobs, crime, UI, vehicles, and performance.  
+        Experience the next evolution of Immersion RP.
+      </p>
+      <a href="#" class="btn-feature">Learn More</a>
     </div>
   </div>
 </section>
+
+<!-- PATCH NOTES -->
+<section class="patch-notes">
+  <h2>Patch Notes</h2>
+
+  <div class="patch-grid">
+
+    <div class="patch-card">
+      <img src="https://i.imgur.com/4ZQZ4Qe.jpeg">
+      <h3>Patch 2.0.1</h3>
+      <p class="date">May 2026</p>
+      <p>Bug fixes, performance improvements, and new police tools.</p>
+      <a href="#" class="btn-small">Read More</a>
+    </div>
+
+    <div class="patch-card">
+      <img src="https://i.imgur.com/3zQ0m0A.jpeg">
+      <h3>Patch 2.0</h3>
+      <p class="date">April 2026</p>
+      <p>Major update introducing new jobs, UI, and systems.</p>
+      <a href="#" class="btn-small">Read More</a>
+    </div>
+
+    <div class="patch-card">
+      <img src="https://i.imgur.com/0t8o3zG.jpeg">
+      <h3>Patch 1.9.5</h3>
+      <p class="date">March 2026</p>
+      <p>Vehicle handling overhaul and new criminal activities.</p>
+      <a href="#" class="btn-small">Read More</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <h2>Gallery</h2>
+
+  <div class="gallery-grid">
+    <img src="https://i.imgur.com/8fKQJ7B.jpeg" class="gallery-img">
+    <img src="https://i.imgur.com/4ZQZ4Qe.jpeg" class="gallery-img">
+    <img src="https://i.imgur.com/3zQ0m0A.jpeg" class="gallery-img">
+    <img src="https://i.imgur.com/0t8o3zG.jpeg" class="gallery-img">
+    <img src="https://i.imgur.com/8fKQJ7B.jpeg" class="gallery-img">
+    <img src="https://i.imgur.com/4ZQZ4Qe.jpeg" class="gallery-img">
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <img id="lightbox-img">
+</div>
 
 <!-- FOOTER -->
 <footer>
