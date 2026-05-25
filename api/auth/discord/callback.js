@@ -3,28 +3,27 @@ import cookie from "cookie";
 export default async function handler(req, res) {
   const code = req.query.code;
 
-  const tokenRes = await fetch("https://identifiers.fivem.net/openid/connect/token", {
+  const tokenRes = await fetch("https://discord.com/api/oauth2/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
+      client_id: process.env.DISCORD_CLIENT_ID,
+      client_secret: process.env.DISCORD_CLIENT_SECRET,
       grant_type: "authorization_code",
       code,
-      redirect_uri: process.env.CFX_REDIRECT_URL,
-      client_id: process.env.CFX_CLIENT_ID,
-      client_secret: process.env.CFX_CLIENT_SECRET
+      redirect_uri: process.env.DISCORD_REDIRECT_URL
     })
   });
 
   const tokenData = await tokenRes.json();
 
-  const userInfoRes = await fetch("https://identifiers.fivem.net/openid/connect/userinfo", {
+  const userRes = await fetch("https://discord.com/api/users/@me", {
     headers: { Authorization: `Bearer ${tokenData.access_token}` }
   });
 
-  const user = await userInfoRes.json();
+  const user = await userRes.json();
 
-  // Save CFX ID in cookie
-  res.setHeader("Set-Cookie", cookie.serialize("cfx_id", user.sub, {
+  res.setHeader("Set-Cookie", cookie.serialize("discord_id", user.id, {
     httpOnly: false,
     secure: true,
     path: "/",
