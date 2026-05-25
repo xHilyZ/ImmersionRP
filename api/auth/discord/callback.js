@@ -1,5 +1,3 @@
-import cookie from "cookie";
-
 export default async function handler(req, res) {
   const code = req.query.code;
 
@@ -34,12 +32,8 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "Failed to fetch Discord user" });
     }
 
-    res.setHeader("Set-Cookie", cookie.serialize("discord_id", user.id, {
-      httpOnly: false,
-      secure: true,
-      path: "/",
-      maxAge: 60 * 60 * 24 * 30
-    }));
+    // Set cookie manually (no npm needed)
+    res.setHeader("Set-Cookie", `discord_id=${user.id}; Path=/; Max-Age=${60 * 60 * 24 * 30}; Secure; SameSite=Lax`);
 
     res.redirect("/index.html");
 
