@@ -147,7 +147,7 @@
   <p>© 2026 Immersion RP — All Rights Reserved</p>
 </footer>
 
-<!-- LOGIN / LOGOUT SCRIPT -->
+<!-- LOGIN / LOGOUT / AVATAR SCRIPT -->
 <script>
   function getCookie(name) {
     return document.cookie
@@ -156,28 +156,40 @@
       ?.split("=")[1];
   }
 
+  async function fetchDiscordUser(id) {
+    try {
+      const res = await fetch(`/api/auth/discord/user?id=${id}`);
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
+    }
+  }
+
   async function updateNavbar() {
     const id = getCookie("discord_id");
     if (!id) return;
+
+    const user = await fetchDiscordUser(id);
+    if (!user) return;
 
     // Remove login button
     const loginBtn = document.querySelector(".login-btn");
     if (loginBtn) loginBtn.remove();
 
-    // Add logged-in UI
     const nav = document.querySelector(".nav-links");
 
     const wrapper = document.createElement("div");
     wrapper.className = "nav-user";
 
     wrapper.innerHTML = `
-      <span class="nav-username">Logged In</span>
+      <img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png" class="nav-avatar">
+      <span class="nav-username">${user.username}</span>
       <button class="logout-btn">Logout</button>
     `;
 
     nav.appendChild(wrapper);
 
-    // Logout logic
     document.querySelector(".logout-btn").addEventListener("click", () => {
       document.cookie = "discord_id=; Path=/; Max-Age=0;";
       window.location.reload();
