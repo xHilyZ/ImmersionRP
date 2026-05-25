@@ -2,23 +2,8 @@ const wheel = document.getElementById("spinWheel");
 const ctx = wheel.getContext("2d");
 const spinButton = document.getElementById("spinButton");
 
-const segments = [
-  "20% OFF",
-  "30% OFF",
-  "50% OFF",
-  "$5 Gift Card",
-  "$10 Gift Card",
-  "70% OFF"
-];
-
-const colors = [
-  "#a020f0",
-  "#ff2bd8",
-  "#a020f0",
-  "#ff2bd8",
-  "#a020f0",
-  "#ff2bd8"
-];
+const segments = ["20% OFF", "30% OFF", "50% OFF", "70% OFF"];
+const colors = ["#a020f0", "#ff2bd8", "#a020f0", "#ff2bd8"];
 
 let startAngle = 0;
 let spinning = false;
@@ -46,34 +31,58 @@ function drawWheel() {
   }
 }
 
-function getReward(finalAngle) {
-  const arc = (2 * Math.PI) / segments.length;
-  const index = Math.floor(((2 * Math.PI - finalAngle) % (2 * Math.PI)) / arc);
-  return segments[index];
-}
-
-function showPopup(reward) {
+function showPopup(reward, code) {
   const popup = document.createElement("div");
   popup.className = "reward-popup";
 
   popup.innerHTML = `
     <div class="reward-box">
-      <h2>🎉 You Won!</h2>
-      <p>${reward}</p>
+      <h2>🎉 You Won ${reward}!</h2>
+      <p>Your Tebex Code:</p>
+      <div class="code-box">${code}</div>
       <button id="closePopup">Close</button>
     </div>
   `;
 
   document.body.appendChild(popup);
-
   document.getElementById("closePopup").onclick = () => popup.remove();
 }
 
-function spinWheel() {
+function getCookie(name) {
+  return document.cookie
+    .split("; ")
+    .find(row => row.startsWith(name + "="))
+    ?.split("=")[1];
+}
+
+async function spinWheel() {
   if (spinning) return;
   spinning = true;
 
-  const spinAngle = Math.random() * 6 + 10; // 10–16 full rotations
+  const cfx_id = getCookie("cfx_id");
+
+  if (!cfx_id) {
+    alert("Please login with CFX before spinning.");
+    spinning = false;
+    return;
+  }
+
+  // Call backend
+  const res = await fetch("/api/spin", {
+    method: "POST",
+    headers: { "x-cfx-id": cfx_id }
+  });
+
+  const data = await res.json();
+
+  if (data.error === "already_spun") {
+    alert("You already spun today — come back tomorrow.");
+    spinning = false;
+    return;
+  }
+
+  // Animate wheel
+  const spinAngle = Math.random() * 6 + 10;
   const duration = 3000;
   const start = performance.now();
 
@@ -82,15 +91,10 @@ function spinWheel() {
 
     if (elapsed >= duration) {
       spinning = false;
-
-      const finalAngle = startAngle % (2 * Math.PI);
-      const reward = getReward(finalAngle);
-
-      showPopup(reward);
+      showPopup(data.reward, data.code);
       return;
     }
 
-    // Easing (ease-out)
     const progress = elapsed / duration;
     const eased = 1 - Math.pow(1 - progress, 3);
 
