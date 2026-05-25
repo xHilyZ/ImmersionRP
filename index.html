@@ -28,6 +28,8 @@
       <a href="events.html">Events</a>
       <a href="store.html">Store</a>
       <a href="staff-login.html">Staff Portal</a>
+
+      <!-- LOGIN BUTTON -->
       <a href="/api/auth/discord/discord" class="btn-discord login-btn">Login with Discord</a>
     </nav>
 
@@ -145,7 +147,7 @@
   <p>© 2026 Immersion RP — All Rights Reserved</p>
 </footer>
 
-<!-- DISCORD LOGIN UI SCRIPT -->
+<!-- LOGIN / LOGOUT SCRIPT -->
 <script>
   function getCookie(name) {
     return document.cookie
@@ -162,39 +164,28 @@
     const loginBtn = document.querySelector(".login-btn");
     if (loginBtn) loginBtn.remove();
 
-    // Create logged-in badge
+    // Add logged-in UI
     const nav = document.querySelector(".nav-links");
-    const badge = document.createElement("span");
-    badge.className = "btn-discord";
-    badge.style.cursor = "default";
-    badge.textContent = "Logged In";
-    nav.appendChild(badge);
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "nav-user";
+
+    wrapper.innerHTML = `
+      <span class="nav-username">Logged In</span>
+      <button class="logout-btn">Logout</button>
+    `;
+
+    nav.appendChild(wrapper);
+
+    // Logout logic
+    document.querySelector(".logout-btn").addEventListener("click", () => {
+      document.cookie = "discord_id=; Path=/; Max-Age=0;";
+      window.location.reload();
+    });
   }
 
   updateNavbar();
 </script>
-
-<style>
-  .nav-user {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 12px;
-    background: #222;
-    border-radius: 6px;
-  }
-
-  .nav-avatar {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-  }
-
-  .nav-username {
-    color: white;
-    font-size: 14px;
-  }
-</style>
 
 </body>
 </html>
