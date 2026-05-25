@@ -66,23 +66,21 @@ function showPopup(reward) {
 
   document.body.appendChild(popup);
 
-  document.getElementById("closePopup").onclick = () => {
-    popup.remove();
-  };
+  document.getElementById("closePopup").onclick = () => popup.remove();
 }
 
 function spinWheel() {
   if (spinning) return;
   spinning = true;
 
-  let spinTime = 0;
-  const spinDuration = 3000;
-  const spinAngle = Math.random() * 2000 + 2000;
+  const spinAngle = Math.random() * 6 + 10; // 10–16 full rotations
+  const duration = 3000;
+  const start = performance.now();
 
-  function rotate() {
-    spinTime += 20;
+  function animate(now) {
+    const elapsed = now - start;
 
-    if (spinTime >= spinDuration) {
+    if (elapsed >= duration) {
       spinning = false;
 
       const finalAngle = startAngle % (2 * Math.PI);
@@ -92,14 +90,17 @@ function spinWheel() {
       return;
     }
 
-    // FIXED ROTATION SPEED
-    startAngle += (spinAngle / spinDuration) * 0.1;
+    // Easing (ease-out)
+    const progress = elapsed / duration;
+    const eased = 1 - Math.pow(1 - progress, 3);
+
+    startAngle = eased * spinAngle * Math.PI * 2;
 
     drawWheel();
-    requestAnimationFrame(rotate);
+    requestAnimationFrame(animate);
   }
 
-  rotate();
+  requestAnimationFrame(animate);
 }
 
 drawWheel();
