@@ -1,42 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Immersion Roleplay — Welcome</title>
-  <link rel="stylesheet" href="/styles/welcome.css">
+  <meta charset="UTF-8">
+  <title>Immersion RP</title>
+  <link rel="stylesheet" href="styles/home.css">
 </head>
 
 <body>
 
-<!-- HEADER BAR -->
-<div class="header">
-  <div class="header-links">
-    <a href="/spin.html">Spin Wheel</a>
-    <a href="/rules.html">Rules</a>
-    <a href="/support">Support</a>
-    <a href="/staff">Staff Login</a>
-  </div>
-</div>
-
 <!-- HERO SECTION -->
-<div class="hero">
-  <div class="overlay"></div>
+<section class="hero">
+  <div class="hero-content">
+    <h1>IMMERSION RP</h1>
+    <p>Welcome to Melbourne’s most immersive FiveM experience.</p>
 
-  <div class="content">
-    <img src="/assets/immersion-logo.png" class="logo">
-
-    <h1>Welcome to Immersion Roleplay</h1>
-    <p>Australia’s most immersive FiveM experience.</p>
-
-    <!-- UPDATED BUTTON BELOW -->
-    <button class="main-btn" onclick="location.href='/home.html'">
-      Play Now
-    </button>
-
-    <button class="main-btn discord-btn" onclick="location.href='https://discord.gg/YOURSERVER'">
-      Join Discord
-    </button>
+    <div class="hero-buttons">
+      <a href="fivem://connect/yourserverip" class="btn-primary">Play Now</a>
+      <a href="https://discord.gg/yourdiscord" class="btn-secondary">Join Discord</a>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- QUICK LINKS -->
+<section class="quick-links">
+  <div class="link-card" onclick="location.href='home.html'">
+    <div class="icon">🎮</div>
+    <h3>Play Now</h3>
+  </div>
+
+  <div class="link-card" onclick="location.href='rules.html'">
+    <div class="icon">📘</div>
+    <h3>Rules</h3>
+  </div>
+
+  <div class="link-card" onclick="location.href='support.html'">
+    <div class="icon">💬</div>
+    <h3>Support</h3>
+  </div>
+
+  <div class="link-card" onclick="location.href='spin.html'">
+    <div class="icon">🎁</div>
+    <h3>Daily Spin</h3>
+  </div>
+
+  <div class="link-card" onclick="location.href='staff-login.html'">
+    <div class="icon">🛡️</div>
+    <h3>Staff Login</h3>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about">
+  <h2>About Immersion RP</h2>
+  <p>
+    Immersion RP is a high‑quality FiveM server built for serious roleplay, 
+    unique experiences, and a strong community.  
+    Our goal is to deliver a polished, realistic, and fun environment for all players.
+  </p>
+
+  <div class="about-features">
+    <div class="feature-card">
+      <h3>⚡ Optimized Performance</h3>
+      <p>Fast loading, smooth gameplay, and stable systems.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>🎭 Serious Roleplay</h3>
+      <p>High standards, strong stories, and immersive characters.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>🚓 Active Staff</h3>
+      <p>Friendly, fair, and always available to help.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Immersion RP — All Rights Reserved</p>
+</footer>
 
 </body>
 </html>
