@@ -12,6 +12,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "Missing Discord ID" });
   }
 
+  // Check last spin
   const { data: existing } = await supabase
     .from("spins")
     .select("*")
@@ -25,8 +26,11 @@ export default async function handler(req, res) {
     return res.status(429).json({ error: "Already spun today" });
   }
 
-  const reward = Math.floor(Math.random() * 1000);
+  // VALID REWARDS ONLY
+  const rewards = [100, 200, 300, 400, 500, 600, 700, 800];
+  const reward = rewards[Math.floor(Math.random() * rewards.length)];
 
+  // Save spin
   await supabase
     .from("spins")
     .upsert({

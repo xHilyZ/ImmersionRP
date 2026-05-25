@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  // ------------------------------
+  // COOKIE CHECK
+  // ------------------------------
   function getCookie(name) {
     return document.cookie
       .split("; ")
@@ -9,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const discord_id = getCookie("discord_id");
 
+  // ------------------------------
+  // CANVAS SETUP
+  // ------------------------------
   const canvas = document.getElementById("spinWheel");
   const ctx = canvas.getContext("2d");
 
@@ -37,6 +43,26 @@ document.addEventListener("DOMContentLoaded", () => {
   let startAngle = 0;
   const arc = (2 * Math.PI) / slices.length;
 
+  // ------------------------------
+  // DRAW POINTER ARROW
+  // ------------------------------
+  function drawPointer() {
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(canvas.width / 2 - 20, 10);
+    ctx.lineTo(canvas.width / 2 + 20, 10);
+    ctx.lineTo(canvas.width / 2, 50);
+    ctx.closePath();
+    ctx.fillStyle = "#ff2bd8";
+    ctx.shadowColor = "#ff2bd8";
+    ctx.shadowBlur = 20;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // ------------------------------
+  // DRAW WHEEL
+  // ------------------------------
   function drawWheel() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -60,10 +86,15 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.fillText(slices[i], -ctx.measureText(slices[i]).width / 2, 5);
       ctx.restore();
     }
+
+    drawPointer();
   }
 
   drawWheel();
 
+  // ------------------------------
+  // SPIN LOGIC
+  // ------------------------------
   let spinning = false;
 
   document.getElementById("spinButton").addEventListener("click", spinWheel);
@@ -93,13 +124,22 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const index = slices.indexOf(`${data.reward} Coins`);
+    // FIX: API returns a number, so convert to "xxx Coins"
+    const rewardText = `${data.reward} Coins`;
+
+    const index = slices.indexOf(rewardText);
+    if (index === -1) {
+      showRewardPopup("Invalid reward received.");
+      spinning = false;
+      return;
+    }
+
     const sliceAngle = index * arc;
 
-    const finalAngle = (Math.PI * 6) + (2 * Math.PI - sliceAngle);
+    const finalAngle = (Math.PI * 8) + (2 * Math.PI - sliceAngle);
 
     let angle = startAngle;
-    const duration = 3000;
+    const duration = 3500;
     const start = performance.now();
 
     function animate(now) {
@@ -114,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startAngle = finalAngle;
         drawWheel();
         spinning = false;
-        showRewardPopup(data.reward);
+        showRewardPopup(rewardText);
       }
     }
 
@@ -126,14 +166,17 @@ document.addEventListener("DOMContentLoaded", () => {
     return -c * t * (t - 2) + b;
   }
 
-  function showRewardPopup(reward) {
+  // ------------------------------
+  // POPUP (CENTERED + ANIMATED)
+  // ------------------------------
+  function showRewardPopup(text) {
     const popup = document.createElement("div");
     popup.className = "reward-popup";
 
     popup.innerHTML = `
-      <div class="reward-box">
+      <div class="reward-box reward-animate">
         <h2>🎉 Reward Unlocked!</h2>
-        <p>You won <strong>${reward} Coins</strong></p>
+        <p>${text}</p>
         <button id="closePopup">Close</button>
       </div>
     `;
