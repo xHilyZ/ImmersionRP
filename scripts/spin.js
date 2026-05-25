@@ -7,6 +7,8 @@ function getCookie(name) {
 
 const discord_id = getCookie("discord_id");
 
+document.getElementById("spinButton").addEventListener("click", spinWheel);
+
 async function spinWheel() {
   if (!discord_id) {
     alert("Please log in with Discord first.");

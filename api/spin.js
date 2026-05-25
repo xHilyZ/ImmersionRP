@@ -19,8 +19,9 @@ export default async function handler(req, res) {
     .single();
 
   const now = Date.now();
+  const day = 24 * 60 * 60 * 1000;
 
-  if (existing && now - existing.last_spin < 24 * 60 * 60 * 1000) {
+  if (existing && now - existing.last_spin < day) {
     return res.status(429).json({ error: "Already spun today" });
   }
 
